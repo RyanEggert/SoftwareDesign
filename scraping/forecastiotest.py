@@ -2,7 +2,6 @@
 
 ## Script for experimenting and testing the forecast.io API. This API deals with (hyper-local) weather forecasting.
 
-
 from authenticate import authtokens
 import requests, time
 
@@ -10,7 +9,7 @@ import requests, time
 r = requests.get('https://api.forecast.io/forecast/' + authtokens['forecastio'] + '/' + str(lat) + ',' + str(lon))
 
 decodedjson =  r.json()
-dailyFores = decodedjson['daily']['data']
+dailyFores = decodedjson['daily']['data']   # Extract daily forecast data
 
 for i in xrange(len(dailyFores)):
     foreTime = dailyFores[i]['time']
