@@ -10,7 +10,7 @@ QPXresp = {u'kind': u'qpxExpress#tripsSearch', u'trips': {u'tripOption': [{u'sal
 
 QPXtrips = QPXresp['trips']['tripOption'][0]
 
-fare = QPXtrips['saleTotal']
+fare = QPXtrips['saleTotal']    # Total fare for this trip's flight(s)
 
 slice = QPXtrips['slice']   # All neccessary flight info is in here
 # print len(slice)    # Length of slice one way or two way flight. If len = 2 , slice[0] is outgoing flight, slice[1] is return flight 
