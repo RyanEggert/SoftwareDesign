@@ -3,7 +3,7 @@
 ## Script for experimenting and testing the QPX Express API. This API deals with airfare search and return.
 
 from authenticate import authtokens
-import requests, time, json, pickle
+import requests, time, json
 
 
 qpxin = '{"request":{"passengers":{"adultCount":1},"slice":[{"origin":"BOS","destination":"MKE","date":"2014-11-05"}],"solutions":1}}'
