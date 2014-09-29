@@ -20,8 +20,8 @@ def getlocation():
         else:
             break
     usAddress = location.address
-    latlongstr = str(location.latitude) + ', '+ str(location.longitude)
-    airportCode = getairportcode(latlongstr)
+    latlongstr = str(location.latitude) + ', '+ str(location.longitude) # Prepare the geographic coordinates for return and future use
+    airportCode = getairportcode(latlongstr)    # Find the airport from which you should depart
     return [latlongstr, airportCode]
 
 def getairportcode(coordstring):

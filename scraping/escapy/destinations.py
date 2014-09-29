@@ -5,7 +5,7 @@
 
 ## Data structure which holds all the possible places one could escape. 
 
-destsToTest = [
+destsToVal = [
     ('Calgary International Airport', 'YYC'), 
     ('Pierre Elliott Trudeau International Airpor', 'YUL'), 
     ('Ottawa Macdonald-Cartier International Airport', 'YOW'), 
@@ -131,4 +131,4 @@ toGo = [('Calgary International Airport', 'YYC', '51.131471, -114.010556', 'Calg
 from geopy.geocoders import GoogleV3
 from authenticate import authtokens
 import time
-# desttuple = validatedestinations(destsToTest)
+# desttuple = validatedestinations(destsToVal)
