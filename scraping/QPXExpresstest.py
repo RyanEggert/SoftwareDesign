@@ -9,7 +9,7 @@ import requests, time, json
 qpxin = '{"request":{"passengers":{"adultCount":1},"slice":[{"origin":"BOS","destination":"MKE","date":"2014-11-05"}],"solutions":1}}'
 headers = {'content-type': 'application/json'}
 
-qpxlink = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key='+authtokens['qpxgoogle']
+qpxlink = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key='+authtokens['google']
 
 
 r = requests.post(qpxlink, data = qpxin, headers = headers)
