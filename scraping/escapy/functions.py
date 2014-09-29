@@ -71,7 +71,7 @@ def printforecast(forecast, whose):
 
 def findinclweather(forecast, printout):
     for item in forecast:
-        if item['precipProb'] > 0.50:
+        if item['precipProb'] > 0.40:   # Precipitation risk tolerance
             if printout:
                 print "\nHmm, it looks like it might %s on %s. Why risk it?" % (item['precipType'], item['date'])
             escdt = item['date']
@@ -81,6 +81,17 @@ def findinclweather(forecast, printout):
             print "Oh! No precipitation is in your forecast. Aren\'t you lucky."
         escdt = False
     return escdt
+
+def whentoleave(escdt):
+    escdtIn = arrow.get(escdt,'dddd, MMMM DD, YYYY')
+    today = arrow.now().format('dddd, MMMM DD, YYYY')
+    if escdt == today:    # If we need to travel today, we will book air travel for today.
+        print 'TOASTS'
+        escdtOut = escdt  # Not neccessary, but is perhaps symbolic, aiding readability.
+        return escdtOut
+    else:   # If we need to travel later in the week (forecast range), we will book air travel on the day before the precipitation.
+        escdtOut = escdtIn.replace(days=-1).format('dddd, MMMM DD, YYYY') # Decrement the escape day. Leave the day before the precipitation.
+        return escdtOut
 
 def findaniceplace(escadate):
     print
@@ -99,14 +110,14 @@ def findaniceplace(escadate):
         if not escadateNew:    # If we've already found that it'll be pleasant throught the entire forecasted time...
             noPlaceToGo = False # Not necessary, but is perhaps symbolic, aiding readability.
             print 'Excellent weather ahoy!'
-            printforecast(foreOut,'Destination (%s)'% toGo[indexToCheck][0])
+            printforecast(foreOut,'Destination (%s)'% toGo[indexToCheck][3])
             return toGo[indexToCheck]  # This would be a good place to go.
         for item in foreOut:
             if item['date'] == escadate:    # Iterate through forecast until we find the day when we want to avoid where we are
                 if item['precipProb'] < 0.20:   # Will the weather here be acceptable?
                     noPlaceToGo = False # Not necessary, but is perhaps symbolic, aiding readability.
                     print 'Good weather ahead!'
-                    printforecast(foreOut,'Destination (%s)'% toGo[indexToCheck][0]) 
+                    printforecast(foreOut,'Destination (%s)'% toGo[indexToCheck][3]) 
                     return toGo[indexToCheck]    # Yes, this would be a good place to go
     time.sleep(.15) # Let's not make requests to forecast.io too frequently. 
 
@@ -128,9 +139,7 @@ def findFlights(date, origin, destination):
 def parseFlightInfo(flightInfo):
 
     QPXtrips = flightInfo['trips']['tripOption'][0]
-
     fare = QPXtrips['saleTotal']    # Total fare for this trip's flight(s)
-
     slice = QPXtrips['slice']   # All neccessary flight info is in here
     # print len(slice)    # Length of slice one way or two way flight. If len = 2 , slice[0] is outgoing flight, slice[1] is return flight 
     # Since we only care about the 'to' flight (and that's all we'll be searching for), we should say... 

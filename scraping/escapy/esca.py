@@ -5,13 +5,15 @@ from functions import *
 
 # Determine Location
 locData = getlocation()
-escapbydate, _ = getforecast(locData[0], True)
+badDay, _ = getforecast(locData[0], True)
 
 # Do you need to leave?
-if not escapbydate: # If escapbydate is FALSE (i.e., if there is no inclement weather and thus no need to leave.)
-    print 'Quitting'
+if not badDay: # If badDay is FALSE (i.e., if there is no inclement weather and thus no need to leave.)
+    print 'Go outside and enjoy yourself!'
     raise SystemExit
 
+# When should you leave?
+escapbydate = whentoleave(badDay)
 # Find places to go
 nicePlace = findaniceplace(escapbydate)
 
