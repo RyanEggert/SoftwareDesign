@@ -12,9 +12,11 @@ if not escapbydate: # If escapbydate is FALSE (i.e., if there is no inclement we
     print 'Quitting'
     raise SystemExit
 
-print 'Toast'
 # Find places to go
-findaniceplace(escapbydate)
+nicePlace = findaniceplace(escapbydate)
 
+findFlights(escapbydate, locData[1], nicePlace[1])
+
+print 'All done! Enjoy!'
 # Find a way to go there
     
