@@ -93,7 +93,7 @@ def printforecast(forecast, whose):
             print '\tNo precipitation today.'
         else:
             print '\tThere is a %d%% chance of %s.' % (item['precipProb']*100, item['precipType'])
-    print '\tForecast data from forecast.io'    # Forecast.io API terms request an attribution when forecast data is displayed.
+    print '.'*60+ '\n'+ 'Forecast data from forecast.io'    # Forecast.io API terms request an attribution when forecast data is displayed.
     print '_'*60+'\n'
 
 
@@ -182,7 +182,7 @@ def findaniceplace(escadate):
 
 
 def findFlights(date, origin, destination):
-     """Given a formatted date, origin, and destination, finds a one-person, one-way flight. 
+    """Given a formatted date, origin, and destination, finds a one-person, one-way flight. 
 
     Inputs: A formatted date string [date] which indicates the day of departure. Date string of format "Tuesday, December 9, 2014". A
             three-letter string IATA code representing the origin airport [origin] (EX: 'BOS'). A three-letter string IATA code representing the 
