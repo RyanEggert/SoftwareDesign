@@ -20,7 +20,7 @@ def getlocation():
     while True:
         inLoc = raw_input("So, where are you?\t")
         location = geolocator.geocode(inLoc)
-        if location==None:
+        if location == None:
             print "\nWe're sorry, we cannot find your location. Please try again."
         else:
             break
