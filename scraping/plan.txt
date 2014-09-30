@@ -1,21 +1,7 @@
-
-
-Grab many news stories/articles. Associate each with author/network. Run spell check on each and note errors.
-
-
-Amazon sales rank track umbrellas (maybe prices too). Track weather in major population centers. See if correlation. 
-
-
-Final step: add to HTML page, upload to dropbox, get direct link. (could even open it in browser)
-
-
-
-
 Use python weather api [ https://code.google.com/p/python-weather-api/wiki/Examples#NOAA ]
 flight serach QPX Express API to find flights and fares. [ https://developers.google.com/qpx-express/ ]
 
-
-getaway.py:
+esca.py:
 Input your location. Check for rain/snow/cold. If no, do nothing. If rain, check weather in major metropolitan areas (intertnational too?). Find area which will be sunny when rains by you. Find flight (for day before?) to get you from rain to sun. Return fare cost and flight information.
 
 Need airport code lookup
