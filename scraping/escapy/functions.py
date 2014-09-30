@@ -5,7 +5,7 @@
 import arrow, requests, sys, time
 from geopy.geocoders import GoogleV3    # Geocoding module
 from random import randint              # Generate random integers
-from authenticate import authtokens     # Retrieves API authentication from a .gitignored .py file.
+from authenticate import authtokens     # Retrieves API authentication from a .gitignored .py file. See sampleauthenticate.py for structure.
 from destinations import toGo           # See destinations.py
 
 
