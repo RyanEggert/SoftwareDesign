@@ -12,6 +12,10 @@
 # print
 
 
-whose = 'Your'
 
-print '%s Forecast:' % (whose) + '\n'+'.'*60 
+
+bob = ['horse', 'moose', 'glop', 'hadouken']
+
+for item in bob:
+    print item
+    print bob.index(item)

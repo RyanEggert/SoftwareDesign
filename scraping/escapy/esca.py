@@ -1,7 +1,5 @@
 ### esca.py ###
-
 from functions import *
-
 
 # Determine Location
 locData = getlocation()
