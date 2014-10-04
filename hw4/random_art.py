@@ -19,6 +19,8 @@ def evaluate_random_function(f, x, y):
     """ your doc string goes here
     """
 
+
+
     # your code goes here
 
 def remap_interval(val, input_interval_start, input_interval_end, output_interval_start, output_interval_end):
