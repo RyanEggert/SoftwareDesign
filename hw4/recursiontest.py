@@ -1,6 +1,8 @@
 # recursiontest.py
 
 from random import choice
+import math
+
 
 def buildnestedfunction(min_depth, max_depth):
     """docstring"""
@@ -30,7 +32,29 @@ def buildnestedfunction(min_depth, max_depth):
 
 
 
+def evalnestedfunction(f,x,y):
+    if type(f[0]) != list:
+        if f[0] == 'prod':
+            calcVal = evalnestedfunction(f[1], x, y) * evalnestedfunction(f[2], x, y)
+        elif f[0] == 'sine':
+            calcVal = math.sin(math.pi * evalnestedfunction(f[1], x, y))
+        elif f[0] == 'cosine':
+            calcVal = math.cos(math.pi * evalnestedfunction(f[1], x, y))
+        elif f[0] == 'x':
+            calcVal = x
+        elif f[0] == 'y':
+            calcVal = y
+        else:
+            print "There has been an error"
+        return calcVal
+
+
+
+
 
 
 if __name__ == '__main__':
-    print buildnestedfunction(3,4)
+    genFunc = buildnestedfunction(3,8)
+    print genFunc
+    evalfun = evalnestedfunction(genFunc, 85, 1)
+    print evalfun
