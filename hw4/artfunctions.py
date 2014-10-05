@@ -36,9 +36,9 @@ def evalnestedfunction(f,x,y):
         if f[0] == 'prod':
             calcVal = evalnestedfunction(f[1], x, y) * evalnestedfunction(f[2], x, y)
         elif f[0] == 'sine':
-            calcVal = math.sin(math.pi * evalnestedfunction(f[1], x, y))
+            calcVal = math.sin(evalnestedfunction(f[1], x, y))
         elif f[0] == 'cosine':
-            calcVal = math.cos(math.pi * evalnestedfunction(f[1], x, y))
+            calcVal = math.cos(evalnestedfunction(f[1], x, y))
         elif f[0] == 'x':
             calcVal = x
         elif f[0] == 'y':
@@ -52,22 +52,28 @@ def remapvalues(value, inMin, inMax, outMin, outMax):
     inRange = inMax - inMin
     outRange = outMax - outMin
     scaled = float(value - inMin) / float(inRange)
-    return int(outMin + (scaled * outRange))
+    return outMin + (scaled * outRange)
 
 
 def calcchanpixvals(width, height, infunction):
     """Calculates pixel values"""
     xs = range(width)
     ys = range(height)
+    xvals = np.linspace(-1, 1, num=width)
+    yvals = np.linspace(-1, 1, num=width)
     chanMat = np.empty((height,width))
+    unmapped = np.empty((height,width))
     for i in itertools.product(xs,ys):
         x, y = i
-        pixValue = evalnestedfunction(infunction, x, y)
-        chanMat[y,x] = remapvalues(pixValue, -1., 1., 0, 255)
-    return chanMat
+        xv = xvals[x]
+        yv = yvals[y]
+        pixValue = evalnestedfunction(infunction, xv, yv)
+        unmapped[y,x] = pixValue
+        chanMat[y,x] = remapvalues(pixValue, -1., 1., 0., 255.)
+    return chanMat, unmapped
 
 def writeimage():
     pass
 
-# if __name__ == '__main__':
-#     pass
+if __name__ == '__main__':
+    pass
