@@ -1,7 +1,8 @@
-# recursiontest.py
+### artfunctions.py ###
 
 from random import choice
-import math
+import math, itertools
+import numpy as np
 
 
 def buildnestedfunction(min_depth, max_depth):
@@ -30,8 +31,6 @@ def buildnestedfunction(min_depth, max_depth):
             buildnestedfunction(min_depth-1, max_depth-1),
             ]
 
-
-
 def evalnestedfunction(f,x,y):
     if type(f[0]) != list:
         if f[0] == 'prod':
@@ -56,13 +55,19 @@ def remapvalues(value, inMin, inMax, outMin, outMax):
     return int(outMin + (scaled * outRange))
 
 
+def calcchanpixvals(width, height, infunction):
+    """Calculates pixel values"""
+    xs = range(width)
+    ys = range(height)
+    chanMat = np.empty((height,width))
+    for i in itertools.product(xs,ys):
+        x, y = i
+        pixValue = evalnestedfunction(infunction, x, y)
+        chanMat[y,x] = remapvalues(pixValue, -1., 1., 0, 255)
+    return chanMat
 
+def writeimage():
+    pass
 
-
-if __name__ == '__main__':
-    # genFunc = buildnestedfunction(3,8)
-    # print genFunc
-    # evalfun = evalnestedfunction(genFunc, 85, 1)
-    # print evalfun
-
-    print remapvalues(.00002, -1., 1., 0, 255)
+# if __name__ == '__main__':
+#     pass
