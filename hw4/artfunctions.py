@@ -51,7 +51,7 @@ def evalnestedfunction(f,x,y):
 def remapvalues(value, inMin, inMax, outMin, outMax):
     inRange = inMax - inMin
     outRange = outMax - outMin
-    scaled = float(value - inMin) / float(inRange)
+    scaled = float(float(value) - float(inMin)) / float(inRange)
     return outMin + (scaled * outRange)
 
 
@@ -69,7 +69,15 @@ def calcchanpixvals(width, height, infunction):
         yv = yvals[y]
         pixValue = evalnestedfunction(infunction, xv, yv)
         unmapped[y,x] = pixValue
-        chanMat[y,x] = remapvalues(pixValue, -1., 1., 0., 255.)
+    unmappedmin = np.amin(unmapped)
+    unmappedmax = np.amax(unmapped)
+
+    print unmappedmin
+    print unmappedmax
+    for i2 in itertools.product(xs,ys):
+        x, y = i2
+        print unmapped[y,x]
+        chanMat[y,x] = remapvalues(unmapped[y,x], unmappedmin, unmappedmax, 0., 255.)
     return chanMat, unmapped
 
 def writeimage():

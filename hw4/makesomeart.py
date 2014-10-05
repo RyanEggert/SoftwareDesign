@@ -5,11 +5,11 @@ from artfunctions import *
 
 ## Parameters ##
 funcGenerMinDepth = 2
-funcGenerMaxDepth = 4
+funcGenerMaxDepth = 13
 
-artWidth = 500  # Desired width of art in pixels
-artHeight = 500 # Desired height of art in pixels
-artMode = 'RGBA' # Mode of art ('RGB', 'RGBA', 'CMYK', 'YCbCr', etc.) [http://effbot.org/imagingbook/concepts.htm#mode]
+artWidth = 1000  # Desired width of art in pixels
+artHeight = 1000 # Desired height of art in pixels
+artMode = 'RGB' # Mode of art ('RGB', 'RGBA', 'CMYK', 'YCbCr', etc.) [http://effbot.org/imagingbook/concepts.htm#mode]
 
 myArt = Image.new(artMode, (artWidth,artHeight))    # Creates an appropriately sized image of black pixels.
 channels = myArt.getbands()
@@ -40,3 +40,5 @@ for i in itertools.product(xs,ys):
     nsArray[y,x] = tuple(singlePixelns)
 print nsArray
 print finalArray
+theArt = Image.fromarray(finalArray, mode=artMode)
+theArt.save('art_6.png')
