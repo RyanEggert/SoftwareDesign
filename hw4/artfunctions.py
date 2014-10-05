@@ -76,7 +76,6 @@ def calcchanpixvals(width, height, infunction):
     print unmappedmax
     for i2 in itertools.product(xs,ys):
         x, y = i2
-        print unmapped[y,x]
         chanMat[y,x] = remapvalues(unmapped[y,x], unmappedmin, unmappedmax, 0., 255.)
     return chanMat, unmapped
 
