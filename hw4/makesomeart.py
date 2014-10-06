@@ -5,12 +5,12 @@ from random import randint
 from artfunctions import *
 
 ## Parameters ##
-funcGenerMinDepth = 2
-funcGenerMaxDepth = 4
-
+funcGenerMinDepth = 7
+funcGenerMaxDepth = 14
+artName = 'myArt_7'
 artWidth = 1920 # Desired width of art in pixels
-artHeight = 1080 # Desired height of art in pixels
-artMode = 'RGB' # Mode of art ('RGB', 'RGBA', 'CMYK', 'YCbCr', etc.) [http://effbot.org/imagingbook/concepts.htm#mode]
+artHeight = 1200 # Desired height of art in pixels
+artMode = 'CMYK' # Mode of art ('RGB', 'RGBA', 'CMYK', 'YCbCr', etc.) [http://effbot.org/imagingbook/concepts.htm#mode]
 
 myArt = Image.new(artMode, (artWidth,artHeight))    # Creates an appropriately sized image of black pixels.
 channels = myArt.getbands()
@@ -40,13 +40,10 @@ for i in itertools.product(xs,ys):
         singlePixelns.append(notscim[channel][y,x])
     finalArray[y,x] = tuple(singlePixel)
     nsArray[y,x] = tuple(singlePixelns)
-print nsArray
-print finalArray
-theArt = Image.fromarray(finalArray, mode=artMode)
-theArt.save('art_8.png')
 print 'startputpixel'
+
 for i2 in itertools.product(xs,ys):
     x,y = i2
     myArt.putpixel((x,y), tuple(finalArray[y,x]))
-myArt.save('myArt_3.jpg')
-myArt.save('myArt_3.tif')
+myArt.save(artName + '.jpg')
+myArt.save(artName + '.tif')
