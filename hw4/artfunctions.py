@@ -13,7 +13,8 @@ def build_random_function(min_depth, max_depth):
     Outputs: Returns the nested list of randomly selected mathematical functions. Note that the mathematical
     functions are strings, not expressions. More code is required to parse the list into the appropriate mathematical
     functions and evaluate numerically. 
-    For a more complete description of the format of 
+    For a more complete description of the format of the nested list functions, please see the original assignment. A link
+    to this can be found at 
     """
     
     # Possible terminators (variables which end branches)

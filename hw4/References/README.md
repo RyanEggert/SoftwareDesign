@@ -1,2 +1,2 @@
 Archive of the computational art assignment as of October 6th, 2014.
-View the archived page [here](https://www.github.com/ryaneggert/SoftwareDesign/hw4/References)
+View the archived page [here](http://htmlpreview.github.io/?https://raw.githubusercontent.com/RyanEggert/SoftwareDesign/master/hw4/References/ArchivedSite/Homework%204:%20Computational%20Art%20-%20Software%20Design%20Fall%202014.html).
