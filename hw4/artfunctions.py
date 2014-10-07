@@ -30,7 +30,8 @@ def build_random_function(min_depth, max_depth):
                 ('intsinc', 1),
                 ('pow2abs', 1),
                 ('avg3', 3),
-                ('cube', 1)   
+                ('cube', 1),
+                ('errorf', 1)   
     ]
 
     # Base case (depth = 1)
@@ -79,13 +80,15 @@ def evaluate_random_function(f,x,y):
         elif f[0] == 'y':
             calcVal = y
         elif f[0] == 'intsinc':
-            calcVal = np.sinc(randint(300,400) * evaluate_random_function(f[1], x, y)) # Calculates the sinc w/ a rand. integer scalar. More noise, it seems
+            calcVal = np.sinc(randint(1,5) * evaluate_random_function(f[1], x, y)) # Calculates the sinc w/ a rand. integer scalar. More noise, it seems
         elif f[0] == 'pow2abs':
             calcVal = np.exp2(-abs(evaluate_random_function(f[1], x, y)))
         elif f[0] == 'avg3':
             calcVal = np.mean(np.array([evaluate_random_function(f[1], x, y), evaluate_random_function(f[1], x, y), evaluate_random_function(f[1], x, y)]))
         elif f[0] == 'cube':
             calcVal = math.pow(evaluate_random_function(f[1], x, y), 3)
+        elif f[0] == 'errorf':
+            calcVal = math.erf(evaluate_random_function(f[1], x, y))
         else:
             print "There has been an error"
         return calcVal
