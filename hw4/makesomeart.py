@@ -5,28 +5,30 @@ from random import randint
 from artfunctions import *
 
 ## Parameters ##
-funcGenerMinDepth = 7
-funcGenerMaxDepth = 14
-artName = 'myArt_7'
-artWidth = 1920 # Desired width of art in pixels
-artHeight = 1200 # Desired height of art in pixels
-artMode = 'CMYK' # Mode of art ('RGB', 'RGBA', 'CMYK', 'YCbCr', etc.) [http://effbot.org/imagingbook/concepts.htm#mode]
+funcGenerMinDepth = 15
+funcGenerMaxDepth = 16
+artName = 'myArt_18'
+artWidth = 300 # Desired width of art in pixels
+artHeight = 300 # Desired height of art in pixels
+artMode = 'RGB' # Mode of art ('RGB', 'RGBA', 'CMYK', 'YCbCr', etc.) [http://effbot.org/imagingbook/concepts.htm#mode]
 
 myArt = Image.new(artMode, (artWidth,artHeight))    # Creates an appropriately sized image of black pixels.
 channels = myArt.getbands()
 allChannels = {}
-notscim = {}
+nonScaledChannels = {}    # Not scaled image
+
 for channel in channels:
-    funcGenerMaxDepth = randint(1,10)
     # Generate Function
     print channel
-    randfunc = buildnestedfunction(funcGenerMinDepth, funcGenerMaxDepth)
-    print randfunc
+    randFunc = build_random_function(funcGenerMinDepth, funcGenerMaxDepth)
+    print randFunc
+    print 'Generated %s-channel random function.' % channel
     # Evaluate Function
-    newChannel, nonscaledch = calcchanpixvals(artWidth, artHeight, randfunc)
+    newChannel, newNonScaledChannel, xyIterLen = calcchanpixvals(artWidth, artHeight, randFunc, channel)
     allChannels[channel] = newChannel
-    notscim[channel] = nonscaledch
-# Construct numpy array of tuples and write image
+    nonScaledChannels[channel] = newNonScaledChannel
+
+# Construct numpy array of tuples
 finalArray = np.empty((artHeight,artWidth), dtype='i8,'*len(channels))
 nsArray = np.empty((artHeight,artWidth), dtype='f8,'*len(channels))
 xs = range(artWidth)
@@ -37,10 +39,12 @@ for i in itertools.product(xs,ys):
     singlePixelns = []
     for channel in channels:
         singlePixel.append(allChannels[channel][y, x])
-        singlePixelns.append(notscim[channel][y,x])
+        singlePixelns.append(nonScaledChannels[channel][y, x])
     finalArray[y,x] = tuple(singlePixel)
     nsArray[y,x] = tuple(singlePixelns)
-print 'startputpixel'
+
+
+print 'Writing image.'
 
 for i2 in itertools.product(xs,ys):
     x,y = i2
