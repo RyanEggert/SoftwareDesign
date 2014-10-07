@@ -4,6 +4,7 @@ from PIL import Image
 from random import randint
 from artfunctions import *
 
+# The script for creating a single piece of art has been functionalized so it could be called from artisdead.py
 def makesomeart(funcGenerMinDepth, funcGenerMaxDepth, artName, artWidth, artHeight, artMode):
     
     myArt = Image.new(artMode, (artWidth,artHeight))    # Creates an appropriately sized image of black pixels.
