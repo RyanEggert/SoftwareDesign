@@ -5,11 +5,11 @@ from random import randint
 from artfunctions import *
 
 ## Parameters ##
-funcGenerMinDepth = 15
-funcGenerMaxDepth = 16
-artName = 'myArt_18'
-artWidth = 300 # Desired width of art in pixels
-artHeight = 300 # Desired height of art in pixels
+funcGenerMinDepth = 4
+funcGenerMaxDepth = 10
+artName = 'myArt_24'
+artWidth = 1600 # Desired width of art in pixels
+artHeight = 900 # Desired height of art in pixels
 artMode = 'RGB' # Mode of art ('RGB', 'RGBA', 'CMYK', 'YCbCr', etc.) [http://effbot.org/imagingbook/concepts.htm#mode]
 
 myArt = Image.new(artMode, (artWidth,artHeight))    # Creates an appropriately sized image of black pixels.
@@ -19,12 +19,12 @@ nonScaledChannels = {}    # Not scaled image
 
 for channel in channels:
     # Generate Function
-    print channel
+    print '\nProcessing %s-channel' % channel
     randFunc = build_random_function(funcGenerMinDepth, funcGenerMaxDepth)
     print randFunc
     print 'Generated %s-channel random function.' % channel
     # Evaluate Function
-    newChannel, newNonScaledChannel, xyIterLen = calcchanpixvals(artWidth, artHeight, randFunc, channel)
+    newChannel, newNonScaledChannel = calcchanpixvals(artWidth, artHeight, randFunc, channel)
     allChannels[channel] = newChannel
     nonScaledChannels[channel] = newNonScaledChannel
 
@@ -40,8 +40,8 @@ for i in itertools.product(xs,ys):
     for channel in channels:
         singlePixel.append(allChannels[channel][y, x])
         singlePixelns.append(nonScaledChannels[channel][y, x])
-    finalArray[y,x] = tuple(singlePixel)
-    nsArray[y,x] = tuple(singlePixelns)
+    finalArray[y,x] = tuple(singlePixel)    # Scaled, for image-creation
+    nsArray[y,x] = tuple(singlePixelns)     # Non-scaled, for debugging
 
 
 print 'Writing image.'
@@ -51,3 +51,5 @@ for i2 in itertools.product(xs,ys):
     myArt.putpixel((x,y), tuple(finalArray[y,x]))
 myArt.save(artName + '.jpg')
 myArt.save(artName + '.tif')
+
+print 'Finished.'
