@@ -70,17 +70,17 @@ def evaluate_random_function(f,x,y):
         if f[0] == 'prod':
             calcVal = evaluate_random_function(f[1], x, y) * evaluate_random_function(f[2], x, y)
         elif f[0] == 'sine':
-            piOrNoPi = [0, math.pi]
+            piOrNoPi = [1, math.pi]
             calcVal = math.sin(choice(piOrNoPi) * evaluate_random_function(f[1], x, y)) # Choose randomly whether to include pi. More excitement!
         elif f[0] == 'cosine':
-            piOrNoPi = [0, math.pi]
+            piOrNoPi = [1, math.pi]
             calcVal = math.cos(choice(piOrNoPi) * evaluate_random_function(f[1], x, y)) # Choose randomly whether to include pi. More excitement!
         elif f[0] == 'x':
             calcVal = x
         elif f[0] == 'y':
             calcVal = y
         elif f[0] == 'intsinc':
-            calcVal = np.sinc(randint(1,5) * evaluate_random_function(f[1], x, y)) # Calculates the sinc w/ a rand. integer scalar. More noise, it seems
+            calcVal = np.sinc(randint(3,3) * evaluate_random_function(f[1], x, y)) # Calculates the sinc w/ a rand. integer scalar. More noise, it seems
         elif f[0] == 'pow2abs':
             calcVal = np.exp2(-abs(evaluate_random_function(f[1], x, y)))
         elif f[0] == 'avg3':
