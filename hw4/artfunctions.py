@@ -109,8 +109,8 @@ def calcchanpixvals(width, height, infunction, channel):
     totPix = width * height
     xvals = np.linspace(-1, 1, num=width)
     yvals = np.linspace(-1, 1, num=height)   # Replace with remap_interval?
-    chanMat = np.empty((height,width))
-    unmapped = np.empty((height,width))
+    chanMat = np.empty((height,width), dtype='f8')
+    unmapped = np.empty((height,width), dtype='f8')
     iCounter = 0
     for i in itertools.product(xs,ys):
         iCounter +=1
@@ -126,8 +126,8 @@ def calcchanpixvals(width, height, infunction, channel):
     unmappedmin = np.amin(unmapped)
     unmappedmax = np.amax(unmapped)
 
-    print 'Unmapped minimum value: %d' % unmappedmin
-    print 'Unmapped maximum value: %d' % unmappedmax
+    print 'Unmapped minimum value: %f' % unmappedmin
+    print 'Unmapped maximum value: %f' % unmappedmax
     if unmappedmin == unmappedmax:
         unmappedmax = 1
         unmappedmin = -1

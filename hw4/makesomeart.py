@@ -50,9 +50,9 @@ def makesomeart(funcGenerMinDepth, funcGenerMaxDepth, artName, artWidth, artHeig
 
 if __name__ == '__main__':
     ## Parameters ##
-    funcGenerMinDepth = 4
-    funcGenerMaxDepth = 10
-    artName = 'myArt_24'
+    funcGenerMinDepth = 2
+    funcGenerMaxDepth = 3
+    artName = 'myArt_25'
     artWidth = 1600 # Desired width of art in pixels
     artHeight = 900 # Desired height of art in pixels
     artMode = 'RGB' # Mode of art ('RGB', 'RGBA', 'CMYK', 'YCbCr', etc.) [http://effbot.org/imagingbook/concepts.htm#mode]
