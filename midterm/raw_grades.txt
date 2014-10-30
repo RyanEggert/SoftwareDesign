@@ -1,0 +1,10 @@
+Dimitar, F, F, D, F, C, D, F
+Pratool, A, A, A, B, A, A, A
+Heather, A, A, A, A, A, A, A
+Chris, C, F, D, B, A, F
+Kyle, A, B, C, D, F
+Donald, C, B, A, B, F, C
+Daisy, D, F, F, D, C
+Quackmore, A, B, A
+Daffy, B, C, D, F, C
+Ouack, A, A, A, B, A, C, A, B, A
