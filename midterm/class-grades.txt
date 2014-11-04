@@ -1,0 +1,10 @@
+Heather:	4.00
+Ouack:		3.56
+Pratool:	3.86
+Dimitar:	0.57
+Kyle:		2.00
+Daisy:		0.80
+Donald:		2.33
+Daffy:		1.60
+Quackmore:	3.67
+Chris:		1.67
